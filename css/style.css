@@ -1,0 +1,260 @@
+@font-face {
+  font-family: 'Blanka';
+  src: url('../fonts/blanka-webfont.woff2') format('woff2'),
+       url('../fonts/blanka-webfont.woff') format('woff'),
+       url('../fonts/blanka.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: white;
+    background-color: #111; 
+}
+
+
+header {
+
+    position: fixed;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    
+
+}
+
+.nav {
+
+    max-width: 1100px; 
+    width: 95%; 
+    margin: 0 auto; 
+
+
+    background-color: rgba(40, 40, 40, 0.7); 
+    border-radius: 50px; 
+    
+
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    padding: 12px 30px; 
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 30px;
+    margin-right: 10px;
+}
+
+#autocademy {
+    font-family: 'Blanka', sans-serif;
+    font-size: 1.4rem;
+    color: white;
+    letter-spacing: 1px;
+}
+
+
+.nav-links ul {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #f32222;
+}
+
+/* Botão "Entrar" agora arredondado para combinar */
+.nav-links a.btn-entrar {
+    background-color: #770d05;
+    padding: 8px 18px;
+    border-radius: 50px; /* Arredondado! */
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links a.btn-entrar:hover {
+    background-color: #eb4034;
+    color: white;
+    box-shadow: 0 0 15px 5px rgb(196, 40, 1); /* Sombra com cor ciano */
+   text-shadow: 0 0 10px rgb(196, 40, 1);
+}
+
+/* =========================================
+   6. CONTEÚDO PRINCIPAL (CENTRALIZADO)
+   ========================================= */
+main {
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    /* 1. Adicionado para "conter" o vídeo de fundo */
+    position: relative;
+    /* 2. Adicionado para evitar qualquer estouro de conteúdo */
+    overflow: hidden; 
+
+    /* 3. A imagem de fundo foi REMOVIDA daqui */
+}
+.inicio-texto h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    font-family: 'Blanka', sans-serif;
+}
+
+.inicio-texto h4 {
+    font-size: 1.25rem;
+    color: #ccc;
+    font-weight: normal;
+}
+
+#subtitulo-inicio {
+    color: rgba(255, 82, 82, 0.7);
+    text-shadow: 0px 1px #a71c03;
+    font-size: 1.3rem;
+}
+
+.video-fundo {
+    position: fixed; /* Fixo na tela, como o "body::before" */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Esta é a "mágica" para o vídeo cobrir a tela sem esmagar */
+    object-fit: cover; 
+    
+    /* Efeitos que você pediu */
+    filter: blur(2px); /* O mesmo desfoque */
+    opacity: 0.70;     /* A mesma opacidade */
+    
+    /* Joga o vídeo para trás de todo o conteúdo */
+    z-index: -1; 
+}
+
+/* =========================================
+   8. SETA DE SCROLL (NOVO)
+   ========================================= */
+.scroll-down-arrow {
+    /* 1. Posicionamento */
+    position: absolute;
+    bottom: 40px; /* Distância do fundo */
+    left: 50%;
+    
+    /* 2. Animação (definida abaixo) */
+    /* Ela vai descer e subir em 2 segundos, infinitamente */
+    animation: bounceDown 2s infinite ease-in-out;
+}
+
+/* 3. A Forma da Seta (Chevron) */
+.scroll-down-arrow span {
+    display: block;
+    width: 22px;  /* Tamanho */
+    height: 22px; /* Tamanho */
+    
+    /* 4. O truque para criar um 'V' sem linhas retas */
+    /* Remove as bordas de cima e da esquerda */
+    border-top: none;
+    border-left: none;
+    
+    /* Cria as linhas da direita e de baixo */
+    border-right: 3px solid rgba(255, 82, 82, 0.7)  ; /* Espessura e cor */
+    border-bottom: 3px solid rgba(255, 82, 82, 0.7)  ; /* Espessura e cor */
+    
+    /* 5. Gira o quadrado para formar a seta 'V' */
+    transform: rotate(45deg);
+}
+
+
+/* =========================================
+   9. ANIMAÇÃO DA SETA (NOVO)
+   ========================================= */
+@keyframes bounceDown {
+    0%, 100% {
+        /* Posição inicial (centralizado) */
+        transform: translateY(0) translateX(-50%);
+    }
+    50% {
+        /* Desce 15px e se mantém centralizado */
+        transform: translateY(15px) translateX(-50%);
+    }
+}
+
+span #sobre {
+    color: rgba(255, 82, 82, 0.7);
+}
+
+#subtitulo-sobre {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+.conteiner-sobre {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 50px;
+    background-color: #1d1c1c;
+    width: 700px;
+    padding: 50px;
+    border-radius: 20px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(196, 40, 1);
+    transition: scale 0.2s ease-in-out;
+
+}
+.conteiner-sobre:hover {
+   scale: 1.1;
+   box-shadow: 0 0 15px 5px rgb(196, 40, 1); 
+   text-shadow: 0 0 10px rgb(196, 40, 1);
+}
+
+.conteiner-sobre h1 {
+    font-size: 1.4rem;
+}
+
+.conteiner-sobre p {
+  max-width: 700px; 
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  line-height: 1.7;
+  margin-top: 10px;
+}
