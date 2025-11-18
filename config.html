@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/config.css">
+</head>
+<header>
+    <div class="topbar-left">
+        <div class="logo">
+            <img src="img/logo.png" alt="Logo Autocademy" width="50px" height="50px">
+            <span>Autocademy</span>
+        </div>
+        
+        <a href="../html/dashboardA.html" class="active">
+            <img src="../imagens/iconhome.png" alt="Ícone Início" height="40" width="40">
+            <span>Início</span>
+        </a>
+        
+        <a href="#"> <img src="../imagens/icons8-livros-96.png" alt="Ícone Materias" height="40" width="40">
+            <span>Materias</span>
+        </a>
+        
+        <a href="#"> <img src="../imagens/iconhistorico.png" alt="Ícone Histórico" height="40" width="40">
+            <span>Historico</span>
+        </a>
+
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+        <a href="#"> <img src="../imagens/icons8-configurações-150.png" alt="Ícone Configurações" height="40" width="40">
+            <span>Configurações</span>
+        </a>
+    </div>
+</header>
+<body>
+   <nav></nav>
+<main class="configuracoes">
+        <div class="container">
+            <div class="config1">
+                <h2>Perfil</h2>
+                  <a href="perfil.php"><p>Configurações da conta</p></a>                 
+            </div>
+            <div class="div config1">
+                <h2>Tema</h2>
+                <a href="tema.html"><p>Escolher Tema</p></a>
+            </div>
+          <div class="div config3">
+                <h2>Notificações</h2>
+                <br>
+                <ul class="not1">
+                    <h2>Configurações de Notificações por E-mail</h2>
+                    <br>
+                    <li>
+                
+                    <p> Essas Configurações se aplicam ás Notificações que você recebe no e-mail.<span> Saiba mais </span><button class="buttonnot1"></button></p><br>
+                    </li>
+
+                    <li><p>Comentários nas suas postagens  <button class="buttonnot1"></button> </p></li><br>
+                    
+                    <li> <p>Comentários que fazem referência a você. <button class="buttonnot1"></button></p></li><br>
+                    <li><p> Comentários particulares nas atividades. <button class="buttonnot1"></button></p></li><br>
+                    <li> <h4>Turmas nas quais voce se inscreveu </h4></li><br>
+                    
+                    <li><p>Atividades e outras postagens dos professores. <button class="buttonnot1"></button></p></li><br>
+                    <li><p>Notas e trabalhos devolvidos pelos seus professores. <button class="buttonnot1"></button></p></li><br>
+                    <li><p>Convites para participar de turmas como aluno. <button class="buttonnot1"></button></p></li><br>
+                    <li><p>Lembretes da data de entrega para seus trabalhos. <button class="buttonnot1"></button></p></li><br>
+                </ul>
+            </div>
+                <div class="div config6">
+                <h2>Ajuda</h2>
+                <a href="#"><p>Entre em contato com o nosso suporte  <img src="../imagens/icons8-ajuda-100.png" alt="ajuda" width="15px" height="15px"></p></a>
+            </div>
+        </div>
+    </main>
+    
+
+<script>
+(function() {
+    const temaSalvo = localStorage.getItem('temaPainel');
+    if (temaSalvo) {
+      document.documentElement.style.setProperty('--cor-tema-header', temaSalvo);
+    }
+  })();
+</script>
+<script>
+    const toggleButtons = document.querySelectorAll('.buttonnot1');
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            this.classList.toggle('active');
+        });
+    });
+</script>
+</body> 
+</html>

@@ -4,33 +4,148 @@ require_once 'config/db.php';
 
 $usuario_logado = false;
 $nome_usuario = '';
-$usuario_data = []; // Array para guardar todos os dados do usuário
+$usuario_data = []; 
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     $usuario_logado = true;
     $id_usuario = $_SESSION['id_usuario'];
     
-    // Busca TODOS os dados do usuário para preencher o modal
     $stmt_usuario = $pdo->prepare("SELECT * FROM usuarios WHERE id = ?");
     $stmt_usuario->execute([$id_usuario]);
     $usuario_data = $stmt_usuario->fetch(PDO::FETCH_ASSOC);
     $nome_usuario = $usuario_data['nome'] ?? 'Usuário';
-    
 }
 
-try {
-    $stmt_cursos = $pdo->query("SELECT * FROM cursos");
-    $cursos = $stmt_cursos->fetchAll(PDO::FETCH_ASSOC);
-    shuffle($cursos);
-} catch (PDOException $e) {
-    $cursos = [];
-}
+$cursos = [
+    [
+        'id' => 1,
+        'nome' => 'Mecânica de Precisão',
+        'descricao_curta' => 'Fundamentos da mecânica de motores com foco em precisão e performance.',
+        'imagem_url' => 'img/cursos/mecanica.jpg'
+    ],
+    [
+        'id' => 2,
+        'nome' => 'Elétrica Automotiva',
+        'descricao_curta' => 'Diagnóstico e reparo de sistemas elétricos, de baterias a centrais eletrônicas.',
+        'imagem_url' => 'img/cursos/eletrica.jpg'
+    ],
+    [
+        'id' => 3,
+        'nome' => 'Pintura e Funilaria',
+        'descricao_curta' => 'Técnicas profissionais de reparo de lataria e pintura com acabamento de showroom.',
+        'imagem_url' => 'img/cursos/pintura.jpg'
+    ],
+    [
+        'id' => 4,
+        'nome' => 'Injeção Eletrônica',
+        'descricao_curta' => 'Especialize-se em sistemas de injeção eletrônica e mapeamento de performance.',
+        'imagem_url' => 'img/cursos/injecao.jpg'
+    ],
+    [
+        'id' => 5,
+        'nome' => 'Preparação de Motores',
+        'descricao_curta' => 'Do básico ao avançado em preparação de motores para competição e rua.',
+        'imagem_url' => 'img/cursos/performance.jpg'
+    ],
+    [
+        'id' => 6,
+        'nome' => 'Estética Automotiva',
+        'descricao_curta' => 'Curso completo de polimento, vitrificação e cuidados estéticos automotivos.',
+        'imagem_url' => 'img/cursos/detailing.jpg'
+    ],
+    [
+        'id' => 7,
+        'nome' => 'Diagnóstico OBD2',
+        'descricao_curta' => 'Aprenda a usar scanners para diagnósticos avançados de falhas em tempo real.',
+        'imagem_url' => 'img/cursos/obd2.jpg'
+    ],
+    [
+        'id' => 8,
+        'nome' => 'Sistemas de Ar Condicionado',
+        'descricao_curta' => 'Manutenção completa e reparo de sistemas de climatização automotiva.',
+        'imagem_url' => 'img/cursos/arcondicionado.jpg'
+    ],
+    [
+        'id' => 9,
+        'nome' => 'Transmissões Automáticas',
+        'descricao_curta' => 'Diagnóstico e reparo de câmbios automáticos, automatizados e CVT.',
+        'imagem_url' => 'img/cursos/cambio.jpg'
+    ],
+    [
+        'id' => 10,
+        'nome' => 'Mecânica de Motocicletas',
+        'descricao_curta' => 'Foco em motores, suspensão e elétrica de motocicletas de alta e baixa cilindrada.',
+        'imagem_url' => 'img/cursos/moto.jpg'
+    ],
+    [
+        'id' => 11,
+        'nome' => 'Gestão de Oficina',
+        'descricao_curta' => 'Aprenda a administrar sua oficina, controlar finanças e gerenciar equipes.',
+        'imagem_url' => 'img/cursos/gestao.jpg'
+    ],
+    [
+        'id' => 12,
+        'nome' => 'Soldagem TIG/MIG',
+        'descricao_curta' => 'Técnicas de solda para reparos estruturais, funilaria e customização de chassis.',
+        'imagem_url' => 'img/cursos/solda.jpg'
+    ],
+    [
+        'id' => 13,
+        'nome' => 'Sistemas de Freios ABS/EBD',
+        'descricao_curta' => 'Especialização em diagnóstico e reparo de freios ABS, EBD e controle de tração.',
+        'imagem_url' => 'img/cursos/freios.jpg'
+    ],
+    [
+        'id' => 14,
+        'nome' => 'Direção Hidráulica e Elétrica',
+        'descricao_curta' => 'Manutenção e diagnóstico de sistemas de direção assistida.',
+        'imagem_url' => 'img/cursos/direcao.jpg'
+    ],
+    [
+        'id' => 15,
+        'nome' => 'Instalação de Som e Acessórios',
+        'descricao_curta' => 'Instalação de som, multimídia, alarmes, vidros e travas elétricas.',
+        'imagem_url' => 'img/cursos/som.jpg'
+    ],
+    [
+        'id' => 16,
+        'nome' => 'Veículos Híbridos e Elétricos',
+        'descricao_curta' => 'Manutenção segura e diagnóstico de veículos com alta tensão (EV/HEV).',
+        'imagem_url' => 'img/cursos/hibridos.jpg'
+    ],
+    [
+        'id' => 17,
+        'nome' => 'Turbo e Supercharger',
+        'descricao_curta' => 'Conceitos de sobrealimentação, instalação e acerto de kits turbo e blower.',
+        'imagem_url' => 'img/cursos/turbo.jpg'
+    ],
+    [
+        'id' => 18,
+        'nome' => 'Reparo de Módulos (ECU)',
+        'descricao_curta' => 'Eletrônica embarcada avançada para reparo de centrais de injeção (ECU).',
+        'imagem_url' => 'img/cursos/ecu.jpg'
+    ],
+    [
+        'id' => 19,
+        'nome' => 'Sistemas de Suspensão',
+        'descricao_curta' => 'Setup, manutenção e instalação de suspensões fixas, rosca e a ar.',
+        'imagem_url' => 'img/cursos/suspensao.jpg'
+    ],
+    [
+        'id' => 20,
+        'nome' => 'Atendimento ao Cliente',
+        'descricao_curta' => 'Como criar um atendimento 5 estrelas e fidelizar clientes na sua oficina.',
+        'imagem_url' => 'img/cursos/atendimento.jpg'
+    ]
+];
+
+shuffle($cursos);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Autocademy - Início</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -117,7 +232,7 @@ A AutoCademy funciona como uma sala de aula automotiva digital, criada para supr
 
 <div id="modal-inscricao" class="modal-overlay">
     <div class="modal-content form-wrapper form-inscricao">
-        <button class="modal-close">&times;</button>
+        <button class="modal-close"></button>
         
         <h2>Inscrição<br><span id="modal-curso-nome" style="color: rgba(255, 82, 82, 0.7);">Nome do Curso</span></h2>
     
@@ -193,7 +308,6 @@ A AutoCademy funciona como uma sala de aula automotiva digital, criada para supr
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         
-        // --- 1. INICIALIZA O SWIPER ---
         const swiper = new Swiper('.course-carousel', {
             loop: true,
             autoplay: {
@@ -216,54 +330,66 @@ A AutoCademy funciona como uma sala de aula automotiva digital, criada para supr
             }
         });
 
-        // --- 2. LÓGICA DO MODAL ---
-        
-        // Pega o status de login do PHP
         const isUserLoggedIn = <?php echo $usuario_logado ? 'true' : 'false'; ?>;
         
-        // Seleciona os elementos do modal
         const modal = document.getElementById('modal-inscricao');
         const modalCloseBtn = modal.querySelector('.modal-close');
         const modalCursoNome = document.getElementById('modal-curso-nome');
         const modalCursoIdInput = document.getElementById('modal-curso-id');
         
-        // Seleciona TODOS os botões de abrir
         const openModalButtons = document.querySelectorAll('.btn-abrir-modal');
 
-        // Adiciona um "escutador" para cada botão
         openModalButtons.forEach(button => {
             button.addEventListener('click', function() {
                 
-                // 1. Verifica se está logado
                 if (!isUserLoggedIn) {
                     window.location.href = 'login.php?erro=Faca login para se inscrever.';
                     return;
                 }
                 
-                // 2. Pega os dados do curso do botão clicado
                 const cursoId = this.dataset.cursoId;
                 const cursoNome = this.dataset.cursoNome;
                 
-                // 3. Preenche o modal com os dados do curso
                 modalCursoNome.textContent = cursoNome;
                 modalCursoIdInput.value = cursoId;
                 
-                // 4. Mostra o modal
                 modal.style.display = 'flex';
             });
         });
 
-        // Lógica para fechar o modal (Botão X)
         modalCloseBtn.addEventListener('click', () => {
             modal.style.display = 'none';
         });
 
-        // Lógica para fechar o modal (Clicando fora)
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.style.display = 'none';
             }
         });
+        
+        const inicioTexto = document.querySelector('.inicio-texto');
+        const scrollArrow = document.querySelector('.scroll-down-arrow');
+        
+        const fadeOutDistance = 400; 
+
+        window.addEventListener('scroll', () => {
+            let scrollY = window.scrollY;
+
+            if (scrollY <= fadeOutDistance) {
+                let newOpacity = 1 - (scrollY / fadeOutDistance);
+                let newTransform = `translateY(${scrollY * -0.5}px)`;
+
+                inicioTexto.style.opacity = newOpacity;
+                inicioTexto.style.transform = newTransform;
+                
+                scrollArrow.style.opacity = newOpacity;
+                scrollArrow.style.transform = newTransform;
+            } else {
+                inicioTexto.style.opacity = 0;
+                scrollArrow.style.opacity = 0;
+            }
+        });
+
     });
 </script>
 </body> 
