@@ -6,6 +6,7 @@ $usuario_logado = false;
 $nome_usuario = '';
 $usuario_data = []; 
 
+// Lógica de Login
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     $usuario_logado = true;
     $id_usuario = $_SESSION['id_usuario'];
@@ -16,6 +17,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     $nome_usuario = $usuario_data['nome'] ?? 'Usuário';
 }
 
+// Lista manual de cursos
 $cursos = [
     [
         'id' => 1,
@@ -200,6 +202,8 @@ A AutoCademy funciona como uma sala de aula automotiva digital, criada para supr
 
 <section id="cursos-secao">
     <h2 class="secao-titulo">Nossos Cursos</h2>
+    
+    <!-- AQUI ESTÁ A MUDANÇA: Setas movidas para DENTRO do 'course-carousel' -->
     <div class="swiper course-carousel">
         <div class="swiper-wrapper">
             
@@ -225,14 +229,18 @@ A AutoCademy funciona como uma sala de aula automotiva digital, criada para supr
             <?php endforeach; ?>
 
         </div>
+        
+        <!-- Setas agora estão aqui dentro -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
     </div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+
 </section>
 
-<div id="modal-inscricao" class="modal-overlay">
+<!-- MODAL DE INSCRIÇÃO -->
+<div id="modal-inscricao" class="modal-overlay" style="display: none;">
     <div class="modal-content form-wrapper form-inscricao">
-        <button class="modal-close"></button>
+        <button class="modal-close">&times;</button>
         
         <h2>Inscrição<br><span id="modal-curso-nome" style="color: rgba(255, 82, 82, 0.7);">Nome do Curso</span></h2>
     
@@ -366,7 +374,7 @@ A AutoCademy funciona como uma sala de aula automotiva digital, criada para supr
                 modal.style.display = 'none';
             }
         });
-        
+
         const inicioTexto = document.querySelector('.inicio-texto');
         const scrollArrow = document.querySelector('.scroll-down-arrow');
         

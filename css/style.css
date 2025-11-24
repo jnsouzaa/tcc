@@ -9,14 +9,11 @@
   font-style: normal;
 }
 
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-
 
 body {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -24,41 +21,27 @@ body {
     background-color: #111; 
 }
 
-
 header {
-
     position: fixed;
     top: 20px;
     left: 0;
     width: 100%;
     z-index: 1000;
-    
-
 }
 
 .nav {
-
     max-width: 1100px; 
     width: 95%; 
     margin: 0 auto; 
-
-
     background-color: rgba(40, 40, 40, 0.7); 
     border-radius: 50px; 
-    
-
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1); 
-    
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-
     padding: 12px 30px; 
 }
-
 
 .logo {
     display: flex;
@@ -76,7 +59,6 @@ header {
     color: white;
     letter-spacing: 1px;
 }
-
 
 .nav-links ul {
     display: flex;
@@ -112,7 +94,7 @@ header {
     background-color: #eb4034;
     color: white;
     box-shadow: 0 0 15px 5px rgb(196, 40, 1); 
-   text-shadow: 0 0 10px rgb(196, 40, 1);
+    text-shadow: 0 0 10px rgb(196, 40, 1);
 }
 
 main {
@@ -124,13 +106,11 @@ main {
     position: relative;
     overflow: hidden; 
 }
+
 .inicio-texto h1 {
     font-size: 3.5rem;
     margin-bottom: 10px;
     font-family: 'Blanka', sans-serif;
-    opacity: 0;
-    animation: fadeIn 1.2s ease-out forwards;
-    animation-delay: 0.3s;
 }
 
 .inicio-texto h4 {
@@ -143,9 +123,6 @@ main {
     color: rgba(255, 82, 82, 0.7);
     text-shadow: 0px 1px #a71c03;
     font-size: 1.3rem;
-    opacity: 0;
-    animation: fadeIn 1.2s ease-out forwards;
-    animation-delay: 0.8s;
 }
 
 .video-fundo {
@@ -154,16 +131,11 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    
-
     object-fit: cover; 
-    
-
     filter: blur(2px); 
     opacity: 0.70; 
     z-index: -1; 
 }
-
 
 .scroll-down-arrow {
     position: absolute;
@@ -176,52 +148,51 @@ main {
     display: block;
     width: 22px;
     height: 22px;
-    border-top: none;
-    border-left: none;
-    
-
-    border-right: 3px solid rgba(255, 82, 82, 0.7)  ; 
-    border-bottom: 3px solid rgba(255, 82, 82, 0.7)  ; 
-    
-
+    border-right: 3px solid rgba(255, 82, 82, 0.7); 
+    border-bottom: 3px solid rgba(255, 82, 82, 0.7); 
     transform: rotate(45deg);
 }
 
 @keyframes bounceDown {
     0%, 100% {
-
         transform: translateY(0) translateX(-50%);
     }
     50% {
-
         transform: translateY(15px) translateX(-50%);
     }
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 span #sobre {
     color: rgba(255, 82, 82, 0.7);
 }
 
+#sobre {
+    height: auto;
+    min-height: 100vh;
+    padding: 100px 50px 50px 50px;
+}
+
+#sobre > h1 {
+    font-size: 3rem;
+    text-align: center;
+}
+
 #subtitulo-sobre {
     text-align: center;
     margin-top: 10px;
     font-size: 1.2rem;
+    margin-bottom: 50px;
 }
 
 .conteiner-sobre {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    margin-top: 50px;
     background-color: #1d1c1c;
     width: 700px;
     padding: 50px;
@@ -229,90 +200,77 @@ span #sobre {
     border: 2px solid transparent; 
     position: relative; 
     overflow: hidden; 
-
 }
 
 .conteiner-sobre::before,
 .conteiner-sobre::after,
 .conteiner-sobre .inner-border-left,
 .conteiner-sobre .inner-border-right {
-  content: '';
-  position: absolute;
-  background-color: rgb(196, 40, 1);
-  z-index: 2;
+    content: '';
+    position: absolute;
+    background-color: rgb(196, 40, 1);
+    z-index: 2;
 }
-
 
 .conteiner-sobre::before {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  animation: moveLineTop 3s linear infinite;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    animation: moveLineTop 3s linear infinite;
 }
-
 
 .conteiner-sobre::after {
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 3px;
-  animation: moveLineBottom 3s linear infinite;
-  animation-delay: 1.5s;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 3px;
+    animation: moveLineBottom 3s linear infinite;
+    animation-delay: 1.5s;
 }
-
 
 .conteiner-sobre .inner-border-left {
-  top: 0;
-  left: 0;
-  width: 3px;
-  height: 100%;
-  animation: moveLineLeft 3s linear infinite;
-  animation-delay: 2.25s;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    animation: moveLineLeft 3s linear infinite;
+    animation-delay: 2.25s;
 }
-
 
 .conteiner-sobre .inner-border-right {
-  bottom: 0;
-  right: 0;
-  width: 3px;
-  height: 100%;
-  animation: moveLineRight 3s linear infinite;
-  animation-delay: 0.75s;
-}
-
-
-
-@keyframes rotate-border {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+    bottom: 0;
+    right: 0;
+    width: 3px;
+    height: 100%;
+    animation: moveLineRight 3s linear infinite;
+    animation-delay: 0.75s;
 }
 
 .conteiner-sobre h1 {
-    font-size: 1.4rem;
+    font-size: 2rem;
+    position: relative;
+    z-index: 3;
 }
 
 .conteiner-sobre p {
-  max-width: 700px; 
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
-  line-height: 1.7;
-  margin-top: 10px;
+    max-width: 700px; 
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    line-height: 1.7;
+    margin-top: 10px;
+    font-size: 1.5rem;
+    position: relative;
+    z-index: 3;
 }
 
 #cursos-secao {
-height: 100vh; 
+    height: auto;
     min-height: 100vh; 
     padding: 100px 0;
     background-color: #111;
-    
-
-position: relative;
+    position: relative;
     overflow: hidden;
     display: block; 
     text-align: center;
@@ -325,12 +283,11 @@ position: relative;
     margin-bottom: 50px;
 }
 
-
 #cursos-secao .course-carousel {
     width: 90%;
     max-width: 1400px;
     margin: 0 auto;
-    overflow: hidden; 
+    overflow: visible; 
 }
 
 .course-card {
@@ -340,10 +297,9 @@ position: relative;
     height: 350px; 
     background-color: #2a2a2a;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    
     transition: transform 0.4s ease, box-shadow 0.4s ease;
+    z-index: 1;
 }
-
 
 .course-card:hover {
     transform: scale(1.05); 
@@ -351,14 +307,12 @@ position: relative;
     z-index: 10; 
 }
 
-
 .card-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: opacity 0.4s ease;
 }
-
 
 .card-content-base {
     position: absolute;
@@ -372,15 +326,13 @@ position: relative;
 }
 
 .card-content-base h4 {
-  font-family: 'Exo 2', sans-serif; 
-  font-weight: 600; 
-  
-  font-size: 1.4rem; 
-  color: white;
-  margin: 0;
-  letter-spacing: 0.5px; 
+    font-family: 'Exo 2', sans-serif; 
+    font-weight: 600; 
+    font-size: 1.4rem; 
+    color: white;
+    margin: 0;
+    letter-spacing: 0.5px; 
 }
-
 
 .card-content-hover {
     position: absolute;
@@ -389,14 +341,11 @@ position: relative;
     width: 100%;
     height: 100%;
     padding: 20px;
-    
     background-color: rgba(10, 10, 10, 0.85);
     backdrop-filter: blur(5px);
-    
     opacity: 0;
     transform: translateY(100%);
     transition: transform 0.4s ease, opacity 0.4s ease;
-    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -405,23 +354,10 @@ position: relative;
     z-index: 3;
 }
 
-.course-card {
-    position: relative; 
-    overflow: hidden; 
-    border-radius: 15px;
-    height: 350px; 
-    background-color: #2a2a2a;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    z-index: 1; 
-}
-
 .course-card:hover .card-content-hover {
     opacity: 1;
     transform: translateY(0); 
 }
-
 
 .course-card:hover .card-content-base {
     opacity: 0;
@@ -432,7 +368,6 @@ position: relative;
     color: #ccc;
     margin-bottom: 25px;
 }
-
 
 .btn-inscrever {
     display: inline-block;
@@ -452,10 +387,15 @@ position: relative;
 #cursos-secao .swiper-button-prev,
 #cursos-secao .swiper-button-next {
     opacity: 0;
-    transition: opacity 0.1s ease;
-    
+    transition: opacity 0.3s ease;
     --swiper-navigation-color: #ffffff;
     --swiper-navigation-size: 22px;
+    position: absolute; 
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    margin-top: 0; 
+    
 }
 
 #cursos-secao:hover .swiper-button-prev,
@@ -464,39 +404,43 @@ position: relative;
 }
 
 #cursos-secao .swiper-button-prev {
-    left: 40px; 
+    left: 0px; 
 }
 #cursos-secao .swiper-button-next {
-    right: 40px;
+    right: 0px; 
+}
+
+@media (max-width: 768px) {
+    #cursos-secao .swiper-button-prev {
+        left: 0; 
+    }
+    #cursos-secao .swiper-button-next {
+        right: 0; 
+    }
 }
 
 @keyframes moveLineTop {
-    0%   { transform: translateX(-100%); }
-    50%  { transform: translateX(0%); }
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(0%); }
     100% { transform: translateX(100%); }
 }
 
 @keyframes moveLineRight {
-    0%   { transform: translateY(-100%); }
-    50%  { transform: translateY(0%); }
+    0% { transform: translateY(-100%); }
+    50% { transform: translateY(0%); }
     100% { transform: translateY(100%); }
 }
 
 @keyframes moveLineBottom {
-    0%   { transform: translateX(100%); }
-    50%  { transform: translateX(0%); }
+    0% { transform: translateX(100%); }
+    50% { transform: translateX(0%); }
     100% { transform: translateX(-100%); }
 }
 
 @keyframes moveLineLeft {
-    0%   { transform: translateY(100%); }
-    50%  { transform: translateY(0%); }
+    0% { transform: translateY(100%); }
+    50% { transform: translateY(0%); }
     100% { transform: translateY(-100%); }
-}
-
-@keyframes rotate-border {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 :focus-visible {
@@ -511,20 +455,7 @@ position: relative;
   box-shadow: none !important;
 }
 
-.cadastro {
-    display: grid;
-    text-align: center;
-}
-
-.entrar {
-    margin: auto;
-    margin-left: auto;
-    margin-right: auto;
-    width: 270px;
-}
-
 .main-login-cadastro {
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -532,9 +463,7 @@ position: relative;
     padding: 40px;
     position: relative;
     overflow: hidden; 
-
 }
-
 
 .form-bg-logo {
     position: absolute;
@@ -546,25 +475,18 @@ position: relative;
     pointer-events: none;
 }
 
-
 .form-wrapper {
-
     position: relative;
     z-index: 2;
-
     width: 100%;
     max-width: 450px; 
-    
-
     background-color: rgba(40, 40, 40, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    
     border-radius: 20px;
     padding: 40px;
     text-align: center;
 }
-
 
 .form-wrapper h2 {
     font-family: 'Blanka', sans-serif;
@@ -572,7 +494,6 @@ position: relative;
     color: white;
     margin-bottom: 30px;
 }
-
 
 .form-wrapper label {
     display: block; 
@@ -583,36 +504,27 @@ position: relative;
     margin-bottom: 5px;
 }
 
-
 .form-wrapper input[type="text"],
 .form-wrapper input[type="email"],
 .form-wrapper input[type="password"] {
     width: 100%;
     padding: 12px 15px;
-    
-
     border: none;
+    margin-bottom: 5px;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.3);
-    
     color: white; 
     font-size: 1rem;
-    font-family: Cambria, Cochin, Georgia, Times, serif;
 }
-
 
 .form-wrapper button[type="submit"] {
     width: 100%;
     padding: 12px;
     margin-top: 25px;
-    
-
     background-color: #b0b0b0;
     color: #111;
-    
     border: none;
     border-radius: 10px;
-    
     font-size: 1.1rem;
     font-weight: bold;
     cursor: pointer;
@@ -623,13 +535,10 @@ position: relative;
     background-color: #ffffff;
 }
 
-
 .form-logo-text {
-
     margin-top: 30px;
     opacity: 1; 
 }
-
 
 .form-wrapper p {
     text-align: center;
@@ -650,7 +559,6 @@ position: relative;
 .nome-usuario:hover {
     color: rgb(196, 40, 1);
     cursor: pointer;
-    
 }
 
 .form-wrapper.form-inscricao {
@@ -743,4 +651,99 @@ position: relative;
 .form-wrapper.form-inscricao input[type="date"] {
     width: 100%;
     padding: 10.5px 15px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.35);
+    color: white;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+}
+
+.form-wrapper.form-inscricao button[type="submit"] {
+    margin-top: 30px;
+    background-color: #d93025;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 4px 15px rgba(217, 48, 37, 0.4);
+}
+
+.form-wrapper.form-inscricao button[type="submit"]:hover {
+    background-color: #e64a3e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(217, 48, 37, 0.6);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    z-index: 9998;
+    overflow-y: auto;
+    padding: 40px 0;
+}
+
+.modal-content {
+    position: relative;
+    z-index: 9999;
+    animation: fadeInModal 0.3s ease-out;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2rem; 
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    z-index: 10000; 
+}
+
+.modal-close:hover {
+    color: white;
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+    .form-wrapper.form-inscricao {
+        padding: 30px;
+    }
+    .form-group {
+        flex: 1 1 calc(50% - 10px); 
+    }
+    .form-wrapper.form-inscricao h2 {
+        font-size: 1.8rem;
+    }
+    .form-wrapper.form-inscricao h2 span {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-wrapper.form-inscricao {
+        padding: 20px;
+    }
+    .form-group {
+        flex: 1 1 100%; 
+    }
+    .form-wrapper.form-inscricao h2 {
+        font-size: 1.5rem;
+    }
+    .form-wrapper.form-inscricao h2 span {
+        font-size: 1.1rem;
+    }
 }
