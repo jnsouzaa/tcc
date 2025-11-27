@@ -669,14 +669,36 @@ animation-delay: 0.8s;
 }
 
 .area-troca-senha {
-    background-color: #636363;
-    border: 1px solid #e9ecef;
+    /* Estado Inicial (Fechado) */
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    
+    /* Removemos margens e paddings para não ocupar espaço quando fechado */
+    margin-top: 0;
+    padding: 0 20px; /* Mantemos o lateral, zeramos o vertical no código abaixo se precisar, mas aqui o max-height resolve */
+    
+    /* Estilo visual */
+    background-color: rgb(70, 70, 70);
     border-radius: 8px;
-    padding: 20px;
-    margin-top: 10px;
-    transition: opacity 0.3s ease-in-out;
+    border: 1px solid transparent; /* Borda transparente para não aparecer risca */
+    
+    /* A Animação */
+    transition: all 0.5s ease-in-out;
 }
 
+.area-troca-senha.aberto {
+    /* Estado Aberto */
+    max-height: 500px; /* Altura suficiente para o conteúdo */
+    opacity: 1;
+    
+    /* Espaçamento quando aberto */
+    margin-top: 20px;
+    padding: 20px;
+    border-color: #e9ecef; /* A borda aparece */
+}
+
+/* Ajustes internos do formulário */
 .form-interno {
     display: flex;
     flex-direction: column;
@@ -699,8 +721,9 @@ animation-delay: 0.8s;
     margin-top: 10px;
 }
 
+/* Botões */
 .btn-salvar-senha {
-    background-color: #a50505;
+    background-color: #b30505;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -708,19 +731,17 @@ animation-delay: 0.8s;
     cursor: pointer;
     font-weight: bold;
 }
-
-.btn-salvar-senha:hover { background-color: #e95050; }
+.btn-salvar-senha:hover { background-color: #f14e4e; }
 
 .btn-cancelar-simples {
-    background-color: #a50505;
-    color: #ffffff;
+    background-color: transparent;
+    color: #cacaca;
     border: 1px solid #ccc;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
 }
-
-.btn-cancelar-simples:hover { background-color: #cc5454; color: #333; }
+.btn-cancelar-simples:hover { background-color: #eee; color: #333; }
 
 .alerta { padding: 15px; text-align: center; color: white; margin-bottom: 10px; border-radius: 5px; }
 .alerta.sucesso { background-color: #4CAF50; }

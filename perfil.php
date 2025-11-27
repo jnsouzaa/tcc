@@ -1,8 +1,6 @@
 <?php
 session_start();
-
 require_once 'config/db.php'; 
-
 
 if (!isset($_SESSION['nome_usuario'])) {
     header("Location: login.php");
@@ -15,35 +13,27 @@ $telefone_user = "Carregando...";
 try {
     if (isset($_SESSION['id_usuario'])) {
         $id_usuario = $_SESSION['id_usuario'];
+        
         $stmt = $pdo->prepare("SELECT nome, email, telefone FROM usuarios WHERE id = ?");
         $stmt->execute([$id_usuario]);
         $dados_user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($dados_user) {
-
             $email_user = $dados_user['email'];
-            
-
-            if (isset($dados_user['telefone']) && !empty($dados_user['telefone'])) {
-                $telefone_user = $dados_user['telefone'];
-            } else {
-                $telefone_user = 'Não cadastrado';
-            }
+            $telefone_user = !empty($dados_user['telefone']) ? $dados_user['telefone'] : 'Não cadastrado';
         }
     }
 } catch (Exception $e) {
-
-    $email_user = "Erro ao buscar";
-    $telefone_user = "Não disponível";
+    $email_user = "Erro";
+    $telefone_user = "Erro";
 }
 
 $pasta_imagens = "img/";
-$foto_padrao = $pasta_imagens . "foto_usuario.png"; 
+$foto_padrao = $pasta_imagens . "padrao.png"; 
 $foto_exibir = $foto_padrao;
 
 if (isset($_SESSION['foto_usuario']) && !empty($_SESSION['foto_usuario'])) {
     $caminho_foto_usuario = $pasta_imagens . $_SESSION['foto_usuario'];
-    
     if (file_exists($caminho_foto_usuario)) {
         $foto_exibir = $caminho_foto_usuario;
     }
@@ -62,7 +52,7 @@ if (isset($_SESSION['foto_usuario']) && !empty($_SESSION['foto_usuario'])) {
     <header>
         <div class="topbar-left">
             <div class="logo">
-                <img src="img/logo.png" alt="Logo Autocademy" width="50px" height="50px">
+                <img src="img/logo.png" alt="Logo" width="50" height="50">
                 <span>Autocademy</span>
             </div>
             
@@ -70,20 +60,16 @@ if (isset($_SESSION['foto_usuario']) && !empty($_SESSION['foto_usuario'])) {
                 <img src="img/iconhome.png" alt="Início" height="40" width="40" onerror="this.style.display='none'">
                 <span>Início</span>
             </a>
-            
             <a href="#"> 
                 <img src="img/icons8-livros-96.png" alt="Matérias" height="40" width="40" onerror="this.style.display='none'">
                 <span>Matérias</span>
             </a>
-            
             <a href="#"> 
                 <img src="img/iconhistorico.png" alt="Histórico" height="40" width="40" onerror="this.style.display='none'">
                 <span>Histórico</span>
             </a>
-
-            <div style="flex-grow: 1; border: none;"></div>
-
-            <a href="config.html"> 
+            <div style="flex-grow: 1;"></div>
+            <a href="#"> 
                 <img src="img/icons8-configurações-150.png" alt="Config" height="40" width="40" onerror="this.style.display='none'">
                 <span>Configurações</span>
             </a>
@@ -97,7 +83,7 @@ if (isset($_SESSION['foto_usuario']) && !empty($_SESSION['foto_usuario'])) {
         <div class="alerta erro" onclick="this.style.display='none'"><?php echo htmlspecialchars($_GET['erro']); ?></div>
     <?php endif; ?>
 
-<div class="main-container">
+    <div class="main-container">
         
         <div class="perfil-card">
             
@@ -134,11 +120,14 @@ if (isset($_SESSION['foto_usuario']) && !empty($_SESSION['foto_usuario'])) {
                     </div>
                 </div>
 
-                <div id="areaTrocaSenha" class="area-troca-senha" style="display: none;">
+  
+                <div id="areaTrocaSenha" class="area-troca-senha">
+                    <h4 style="margin-top: 0; color: #ecececff;">Confirmar Alteração</h4>
+                    
                     <form action="backend/processa_senha.php" method="POST" class="form-interno">
                         <div class="campo-grupo">
                             <label>Confirme seu E-mail:</label>
-                            <input type="email" name="email_confirma" required>
+                            <input type="email" name="email_confirma" required placeholder="Ex: joao@email.com">
                         </div>
                         
                         <div class="linha-dupla">
@@ -166,18 +155,15 @@ if (isset($_SESSION['foto_usuario']) && !empty($_SESSION['foto_usuario'])) {
     <script>
         function toggleAreaSenha() {
             var area = document.getElementById("areaTrocaSenha");
-            if (area.style.display === "none") {
-                area.style.display = "block";
-                area.style.opacity = 0;
-                setTimeout(function(){ area.style.opacity = 1; }, 50);
-            } else {
-                area.style.display = "none";
-            }
+
+            area.classList.toggle("aberto");
         }
         
         const urlParams = new URLSearchParams(window.location.search);
         if(urlParams.has('erro')) {
-            toggleAreaSenha();
+            setTimeout(() => {
+                toggleAreaSenha();
+            }, 100);
         }
     </script>
 </body>
