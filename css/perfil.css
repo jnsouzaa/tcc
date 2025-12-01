@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-body: #121214;
+    --bg-sidebar: #202024;
+    --bg-card: #ffffff; 
+    --bg-hover: #323238;
+    --text-primary: #e1e1e6;
+    --text-secondary: #a8a8b3;
+    --accent-color: #E53935;
+    --border-color: #323238;
+    
+    --sidebar-width: 80px;
+    --sidebar-width-open: 260px;
+    
+    --transition-speed: 0.3s;
+    --transition-curve: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: var(--bg-sidebar);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 0;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    border-right: 1px solid var(--border-color);
+    box-shadow: 4px 0 20px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+.sidebar:hover {
+    width: var(--sidebar-width-open);
+    align-items: flex-start;
+}
+
+.logo-area {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    margin-bottom: 30px;
+    white-space: nowrap;
+}
+
+.logo-area img {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.logo-text {
+    margin-left: 16px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    opacity: 0;
+    color: var(--text-primary);
+    transition: opacity var(--transition-speed);
+}
+
+.sidebar:hover .logo-text {
+    opacity: 1;
+    transition-delay: 0.1s;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    height: 52px;
+    margin: 6px auto;
+    padding: 0 16px;
+    border-radius: 12px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.nav-link img {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    object-fit: contain;
+    margin-right: 16px;
+    filter: brightness(0.7);
+    transition: filter 0.3s;
+}
+
+.nav-link:hover {
+    background-color: var(--bg-hover);
+    color: var(--text-primary);
+    transform: translateX(4px);
+}
+
+.nav-link:hover img {
+    filter: brightness(1);
+}
+
+.nav-link.active {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(229, 57, 53, 0.4);
+}
+
+.nav-link.active img {
+    filter: brightness(0) invert(1);
+}
+
+.nav-text {
+    opacity: 0;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.sidebar:hover .nav-text {
+    opacity: 1;
+}
+
+.spacer {
+    flex: 1;
+}
+
+/* --- LAYOUT PRINCIPAL (PERFIL) --- */
+.main-container {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.perfil-card {
+    background: #333;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    color: #333; 
+}
+
+.perfil-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 20px;
+}
+
+.foto-perfil-header {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-color);
+}
+
+.perfil-info-basica {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.perfil-info-basica h2 {
+    margin: 0;
+    color: #a0a0a0;
+    font-size: 1.5em;
+}
+
+.btn-link-foto {
+    background-color: var(--accent-color);
+    color: #dbdbdb;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    cursor: pointer;
+    text-align: center;
+    width: fit-content;
+    transition: background 0.3s;
+}
+
+.btn-link-foto:hover {
+    background-color: #d0d0d0;
+}
+
+.perfil-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.campo-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.campo-grupo label {
+    font-weight: bold;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.campo-grupo input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.input-com-botao {
+    display: flex;
+    gap: 10px;
+}
+
+.input-com-botao input {
+    flex-grow: 1;
+}
+
+.btn-acao-modal {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    white-space: nowrap;
+    transition: background 0.3s;
+}
+
+.btn-acao-modal:hover {
+    filter: brightness(0.9);
+}
+
+/* --- ÁREA DE TROCA DE SENHA (ANIMAÇÃO) --- */
+.area-troca-senha {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-top: 0;
+    padding: 0 20px;
+    background-color: #272727;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.5s ease-in-out;
+}
+
+.area-troca-senha.aberto {
+    max-height: 500px;
+    opacity: 1;
+    margin-top: 20px;
+    padding: 20px;
+    border-color: #e9ecef;
+}
+
+.form-interno {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.linha-dupla {
+    display: flex;
+    gap: 15px;
+}
+
+@media (max-width: 500px) {
+    .linha-dupla {
+        flex-direction: column;
+    }
+}
+
+.botoes-acao-senha {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-salvar-senha {
+    background-color: rgba(255, 82, 82, 0.7) ;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-salvar-senha:hover {
+    background-color: rgba(255, 102, 102, 0.911) ;
+}
+
+.btn-cancelar-simples {
+    background-color: transparent;
+    color: #b9b9b9;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-cancelar-simples:hover {
+    background-color: rgba(255, 82, 82, 0.7) ;
+    color: #ffffff;
+}
+
+.alerta {
+    padding: 15px;
+    text-align: center;
+    color: white;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.alerta.sucesso {
+    background-color: #4CAF50;
+}
+
+.alerta.erro {
+    background-color: #f44336;
+}

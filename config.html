@@ -1,96 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Configurações - Autocademy</title>
     <link rel="stylesheet" href="css/config.css">
+   
+
 </head>
 
-<body>
-   <header>
-    <div class="topbar-left">
-        <div class="logo">
-            <img src="../imagens/logo.png" alt="Logo Autocademy" width="50px" height="50px">
-            <span>Autocademy</span>
+<body class="light-mode">
+
+    <aside class="sidebar">
+        <div class="logo-area">
+            <img src="../imagens/logo.png" alt="Logo">
+            <span class="logo-text">Autocademy</span>
         </div>
-        
-        <a href="../html/materias.html" class="active">
-            <img src="../imagens/iconhome.png" alt="Ícone Início" height="40" width="40">
-            <span>Início</span>
-        </a>
-        
-        <a href="#"> <img src="../imagens/icons8-livros-96.png" alt="Ícone Materias" height="40" width="40">
-            <span>Materias</span>
-        </a>
-        
-        <a href="#"> <img src="../imagens/iconhistorico.png" alt="Ícone Histórico" height="40" width="40">
-            <span>Historico</span>
+
+        <a href="../html/dashboard.php" class="nav-link">
+            <img src="../imagens/iconhome.png" alt="Início">
+            <span class="nav-text">Início</span>
         </a>
 
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-        <a href="#"> <img src="../imagens/icons8-configurações-150.png" alt="Ícone Configurações" height="40" width="40">
-            <span>Configurações</span>
+        <a href="../html/materias.html" class="nav-link">
+            <img src="../imagens/icons8-livros-96.png" alt="Matérias">
+            <span class="nav-text">Matérias</span>
         </a>
-    </div>
-</header>
-<main class="configuracoes">
-        <div class="container">
-            <div class="config1">
-                <h2>Perfil</h2>
-                  <a href="perfil.php"><p>Configurações da conta</p></a>                 
+
+        
+    <a href="../html/chat.html" class="nav-link">
+            <img src="../imagens/chat.png" alt="Chat">
+            <span class="nav-text">Chat</span>
+        </a>
+        <a href="#" class="nav-link">
+            <img src="../imagens/iconhistorico.png" alt="Histórico">
+            <span class="nav-text">Histórico</span>
+        </a>
+
+        <div class="spacer"></div>
+
+        <a href="config.html" class="nav-link active">
+            <img src="../imagens/icons8-configurações-150.png" alt="Config">
+            <span class="nav-text">Configurações</span>
+        </a>
+    </aside>
+
+    <main class="main-wrapper">
+
+        <header class="top-header">
+            <div class="search-box">
+                <input type="text" placeholder="Buscar configuração..." class="search-input">
+                <i class="fa-solid fa-magnifying-glass" style="color: var(--text-secondary)"></i>
             </div>
-            <div class="div config1">
-                <h2>Tema</h2>
-                <a href="tema.html"><p>Escolher Tema</p></a>
+            <div class="user-profile">
+                <span>Aluno Senai</span>
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: #555; display:flex; align-items:center; justify-content:center;">
+                    <i class="fa-solid fa-user" style="color:white;"></i>
+                </div>
             </div>
-          <div class="div config3">
-                <h2>Notificações</h2>
-                <br>
-                <ul class="not1">
-                    <h2>Configurações de Notificações por E-mail</h2>
-                    <br>
-                    <li>
+        </header>
+
+        <div class="scroll-content">
+            <div class="container">
                 
-                    <p> Essas Configurações se aplicam ás Notificações que você recebe no e-mail.<span> Saiba mais </span><button class="buttonnot1"></button></p><br>
-                    </li>
+                <h1 class="page-title">Configurações</h1>
 
-                    <li><p>Comentários nas suas postagens  <button class="buttonnot1"></button> </p></li><br>
+                <div class="settings-card">
+                    <div class="settings-header">Geral</div>
                     
-                    <li> <p>Comentários que fazem referência a você. <button class="buttonnot1"></button></p></li><br>
-                    <li><p> Comentários particulares nas atividades. <button class="buttonnot1"></button></p></li><br>
-                    <li> <h4>Turmas nas quais voce se inscreveu </h4></li><br>
-                    
-                    <li><p>Atividades e outras postagens dos professores. <button class="buttonnot1"></button></p></li><br>
-                    <li><p>Notas e trabalhos devolvidos pelos seus professores. <button class="buttonnot1"></button></p></li><br>
-                    <li><p>Convites para participar de turmas como aluno. <button class="buttonnot1"></button></p></li><br>
-                    <li><p>Lembretes da data de entrega para seus trabalhos. <button class="buttonnot1"></button></p></li><br>
-                </ul>
-            </div>
-                <div class="div config6">
-                <h2>Ajuda</h2>
-                <a href="#"><p>Entre em contato com o nosso suporte  <img src="../imagens/icons8-ajuda-100.png" alt="ajuda" width="15px" height="15px"></p></a>
-            </div>
-        </div>
-    </main>
-    
+                    <a href="perfil.php" class="settings-item">
+                        <p>
+                            Perfil e Conta
+                            <small>Alterar senha, foto e nome de usúario</small>
+                        </p>
+                        <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                    </a>
 
-<script>
-(function() {
-    const temaSalvo = localStorage.getItem('temaPainel');
-    if (temaSalvo) {
-      document.documentElement.style.setProperty('--cor-tema-header', temaSalvo);
-    }
-  })();
-</script>
-<script>
-    const toggleButtons = document.querySelectorAll('.buttonnot1');
-    toggleButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            this.classList.toggle('active');
+                    <a href="tema.html" class="settings-item">
+                        <p>
+                            Aparência e Tema
+                            <small>Alternar entre modo claro e escuro</small>
+                        </p>
+                        <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                    </a>
+                </div>
+
+                <div class="settings-card">
+                    <div class="settings-header">Notificações por E-mail</div>
+                    
+                    <div class="toggle-row">
+                        <span>Comentários nas suas postagens</span>
+                        <button class="toggle-btn active"></button>
+                    </div>
+
+                    <div class="toggle-row">
+                        <span>Menções a você (@usuario)</span>
+                        <button class="toggle-btn active"></button>
+                    </div>
+
+                    <div class="toggle-row">
+                        <span>Novas atividades postadas</span>
+                        <button class="toggle-btn"></button>
+                    </div>
+
+                    <div class="toggle-row">
+                        <span>Notas lançadas</span>
+                        <button class="toggle-btn active"></button>
+                    </div>
+                </div>
+
+                <div class="settings-card">
+                    <div class="settings-header">Suporte</div>
+                    <a href="#" class="settings-item">
+                        <p>Central de Ajuda</p>
+                        <img src="../imagens/icons8-ajuda-100.png" width="20" height="20">
+                    </a>
+                </div>
+
+            </div> </div> </main>
+
+    <script>
+        const toggles = document.querySelectorAll('.toggle-btn');
+        toggles.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.classList.toggle('active');
+            });
         });
-    });
-</script>
+
+        // Script para Sidebar (Manter ativo)
+        const links = document.querySelectorAll('.nav-link');
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                links.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+    <script src="../html/tema.js"></script>
 </body> 
 </html>

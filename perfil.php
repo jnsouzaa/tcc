@@ -46,35 +46,41 @@ if (isset($_SESSION['foto_usuario']) && !empty($_SESSION['foto_usuario'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil - Autocademy</title>
-    <link rel="stylesheet" href="css/config.css">
+    <link rel="stylesheet" href="css/perfil.css">
 </head>
 <body>
-    <header>
-        <div class="topbar-left">
-            <div class="logo">
-                <img src="img/logo.png" alt="Logo" width="50" height="50">
-                <span>Autocademy</span>
-            </div>
-            
-            <a href="index.php" class="active">
-                <img src="img/iconhome.png" alt="Início" height="40" width="40" onerror="this.style.display='none'">
-                <span>Início</span>
-            </a>
-            <a href="#"> 
-                <img src="img/icons8-livros-96.png" alt="Matérias" height="40" width="40" onerror="this.style.display='none'">
-                <span>Matérias</span>
-            </a>
-            <a href="#"> 
-                <img src="img/iconhistorico.png" alt="Histórico" height="40" width="40" onerror="this.style.display='none'">
-                <span>Histórico</span>
-            </a>
-            <div style="flex-grow: 1;"></div>
-            <a href="#"> 
-                <img src="img/icons8-configurações-150.png" alt="Config" height="40" width="40" onerror="this.style.display='none'">
-                <span>Configurações</span>
-            </a>
+    <aside class="sidebar">
+        <div class="logo-area">
+            <img src="../imagens/logo.png" alt="Logo">
+            <span class="logo-text">Autocademy</span>
         </div>
-    </header>
+
+        <a href="../html/dashboard.php" class="nav-link active">
+            <img src="../imagens/iconhome.png" alt="Início" >
+            <span class="nav-text">Início</span>
+        </a>
+
+        <a href="../html/materias.php" class="nav-link">
+            <img src="../imagens/icons8-livros-96.png" alt="Matérias">
+            <span class="nav-text">Matérias</span>
+        </a>
+         <a href="../html/chat.html" class="nav-link">
+            <img src="../imagens/chat.png" alt="Chat">
+            <span class="nav-text">Chat</span>
+        </a>
+
+        <a href="../html/historic.php" class="nav-link">
+            <img src="../imagens/iconhistorico.png" alt="Histórico">
+            <span class="nav-text">Histórico</span>
+        </a>
+        
+        <div class="spacer"></div>
+
+        <a href="config.html" class="nav-link">
+            <img src="../imagens/icons8-configurações-150.png" alt="Config">
+            <span class="nav-text">Configurações</span>
+        </a>
+    </aside>
      
     <?php if(isset($_GET['msg'])): ?>
         <div class="alerta sucesso" onclick="this.style.display='none'"><?php echo htmlspecialchars($_GET['msg']); ?></div>
