@@ -161,7 +161,7 @@ shuffle($cursos);
         </div>
         <div class="nav-links">
             <ul>
-                <li><a href="index.php">Início</a></li>
+                <li><a href="dashboard.php">Início</a></li>
                 <li><a href="#cursos-secao">Cursos</a></li>
                 <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#">Contato</a></li>

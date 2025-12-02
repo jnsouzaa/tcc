@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - Autocademy</title>
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="">
+
+    <aside class="sidebar">
+        <div class="logo-area">
+            <img src="img/logo.png" alt="Logo">
+            <span class="logo-text">Autocademy</span>
+        </div>
+
+        <a href="dashboard.php" class="nav-link">
+            <img src="img/iconhome.png" alt="Início">
+            <span class="nav-text">Início</span>
+        </a>
+
+        <a href="materias.php" class="nav-link">
+            <img src="img/icons8-livros-96.png" alt="Matérias">
+            <span class="nav-text">Matérias</span>
+        </a>
+
+        <a href="chat.html" class="nav-link active"> 
+           <img src="img/chat.png" alt="Chat">
+            <span class="nav-text">Chat</span>
+        </a>
+
+        <a href="#" class="nav-link">
+            <img src="img/iconhistorico.png" alt="Histórico">
+            <span class="nav-text">Histórico</span>
+        </a>
+
+        <div class="spacer"></div>
+
+        <a href="config.html" class="nav-link">
+            <img src="img/icons8-configurações-150.png" alt="Config">
+            <span class="nav-text">Configurações</span>
+        </a>
+    </aside>
+
+    <main class="main-wrapper">
+
+        <header class="top-header">
+            <h2 style="font-size: 1.2rem; color: var(--text-primary);">Central de Mensagens</h2>
+            
+            <div class="user-profile">
+                <span>Aluno Senai</span>
+                <div class="avatar-circle"><i class="fa-solid fa-user"></i></div>
+            </div>
+        </header>
+
+        <div class="chat-layout">
+            
+            <div class="participants-sidebar">
+                <div class="participants-header">
+                    <h3>Conversas</h3>
+                    <input type="text" class="participants-search" placeholder="Buscar contato...">
+                </div>
+
+                <div class="participants-list">
+                    <div class="participant-item active-chat"> 
+                        <div class="participant-avatar">
+                            <span>JS</span>
+                            <span class="status-indicator status-online"></span>
+                        </div>
+                        <div class="participant-info">
+                            <div class="participant-name">Prof. João Silva</div>
+                            <div class="participant-role">Mecânica Geral</div>
+                        </div>
+                    </div>
+
+                    <div class="participant-item">
+                        <div class="participant-avatar">
+                            <span>MA</span>
+                            <span class="status-indicator status-offline"></span>
+                        </div>
+                        <div class="participant-info">
+                            <div class="participant-name">Monitoria Auto</div>
+                            <div class="participant-role">Suporte Técnico</div>
+                        </div>
+                    </div>
+
+                    <div class="participant-item">
+                        <div class="participant-avatar">
+                            <span>GP</span>
+                            <span class="status-indicator status-online"></span>
+                        </div>
+                        <div class="participant-info">
+                            <div class="participant-name">Grupo: Projeto TCC</div>
+                            <div class="participant-role">3 Membros</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-area">
+                
+                <div class="chat-area-header">
+                    <div>
+                        <h2>Prof. João Silva</h2>
+                        <span class="status-indicator status-online"></span>
+                        <span style="font-size: 0.85rem; color: var(--text-secondary);">Online agora</span>
+                    </div>
+                    <i class="fa-solid fa-ellipsis-vertical" style="color: var(--text-secondary); cursor: pointer;"></i>
+                </div>
+
+                <div class="messages-container" id="msgContainer">
+                    
+                    <div class="message">
+                        <div class="participant-avatar">JS</div>
+                        <div>
+                            <div class="message-bubble">
+                                Olá! Como está o andamento do projeto da suspensão?
+                            </div>
+                            <span class="message-time">10:30</span>
+                        </div>
+                    </div>
+
+                    <div class="message own">
+                        <div>
+                            <div class="message-bubble">
+                                Bom dia, professor! Já finalizei a modelagem 3D. Estou montando a apresentação agora.
+                            </div>
+                            <span class="message-time">10:32</span>
+                        </div>
+                        <div class="participant-avatar" style="background-color: #3498db;">AS</div>
+                    </div>
+
+                    <div class="message">
+                        <div class="participant-avatar">JS</div>
+                        <div>
+                            <div class="message-bubble">
+                                Excelente! Se tiver dúvidas no cálculo de carga, pode me chamar aqui.
+                            </div>
+                            <span class="message-time">10:33</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="input-area">
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-paperclip"></i>
+                        <input type="text" class="message-input" placeholder="Digite sua mensagem...">
+                        <button class="send-btn">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+    <script src="tema.js"></script>
+    <script src="javascript.js/chat.js"></script> 
+       <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.7.4.0.js"></script>
+<script src="javascript.js/api.js"></script>
+
+</body>
+</html>

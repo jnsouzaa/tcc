@@ -1,0 +1,333 @@
+    <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolher Tema - Autocademy</title>
+    <link rel="stylesheet" href="css/style4.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .center-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+        }
+        
+        .theme-selector-container {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .section-divider {
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 30px 0;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-description {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+
+        /* BOTÕES DE TEMA (DARK/LIGHT) */
+        .theme-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .theme-btn {
+            background-color: var(--bg-input);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-btn:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .theme-btn.active {
+            border-color: var(--accent-color);
+            background-color: rgba(209, 52, 56, 0.1);
+            box-shadow: 0 0 0 3px rgba(209, 52, 56, 0.2);
+        }
+
+        .theme-btn-icon {
+            font-size: 2.5rem;
+        }
+
+        .theme-btn-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
+
+        .theme-btn-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* BOTÕES DE COR */
+        .color-swatches {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+
+        .swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+
+        .swatch:hover {
+            transform: scale(1.15);
+        }
+
+        .swatch.active {
+            border-color: var(--text-primary);
+            box-shadow: 0 0 0 2px var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .swatch::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .swatch.active::after {
+            opacity: 1;
+        }
+
+        /* PREVIEW */
+        .browser-preview {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-top: 20px;
+        }
+
+        .preview-header {
+            height: 40px;
+            background-color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            transition: background-color 0.3s;
+            gap: 8px;
+        }
+
+        .preview-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.6);
+        }
+
+        .preview-content {
+            background: var(--bg-body);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            min-height: 120px;
+            transition: background-color 0.3s;
+        }
+
+        /* BOTÃO VOLTAR */
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .btn-back:hover {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="logo-area">
+            <img src="img/logo.png" alt="Logo">
+            <span class="logo-text">Autocademy</span>
+        </div>
+
+        <a href="dashboard.php" class="nav-link">
+            <img src="img/iconhome.png" alt="Início">
+            <span class="nav-text">Início</span>
+        </a>
+
+        <a href="materias.html" class="nav-link">
+            <img src="img/icons8-livros-96.png" alt="Matérias">
+            <span class="nav-text">Matérias</span>
+        </a>
+
+        <a href="#" class="nav-link">
+            <img src="img/iconhistorico.png" alt="Histórico">
+            <span class="nav-text">Histórico</span>
+        </a>
+
+        <div class="spacer"></div>
+
+        <a href="config.html" class="nav-link active">
+            <img src="img/icons8-configurações-150.png" alt="Config">
+            <span class="nav-text">Configurações</span>
+        </a>
+    </aside>
+
+    <main class="main-wrapper">
+
+        <header class="top-header">
+            <div class="search-box">
+                <input type="text" placeholder="Buscar..." class="search-input">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            </div>
+            <div class="user-profile">
+                <span>Aluno Senai</span>
+                <div class="avatar-circle">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="scroll-content">
+            <div class="container center-screen">
+                
+                <div style="width: 100%; max-width: 500px;">
+                    <a href="config.html" class="btn-back">
+                        <i class="fa-solid fa-arrow-left"></i> Voltar para Configurações
+                    </a>
+                </div>
+
+                <div class="theme-selector-container">
+                    <h3 style="text-align: center; margin-bottom: 10px; color: var(--text-primary);">
+                        <i class="fa-solid fa-palette"></i> Personalize sua Experiência
+                    </h3>
+                    <p style="text-align: center; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 30px;">
+                        Escolha o tema e a cor de destaque do sistema.
+                    </p>
+                    
+                    <!-- ========== SELEÇÃO DE TEMA (DARK/LIGHT) ========== -->
+                    <div class="section-title">
+                        <i class="fa-solid fa-moon"></i>
+                        Modo de Aparência
+                    </div>
+                    <div class="section-description">
+                        Escolha entre tema escuro ou claro
+                    </div>
+                    
+                    <div class="theme-buttons">
+                        <button class="theme-btn" data-theme="dark">
+                            <div class="theme-btn-icon">🌙</div>
+                            <div class="theme-btn-name">Escuro</div>
+                            <div class="theme-btn-desc">Confortável à noite</div>
+                        </button>
+                        
+                        <button class="theme-btn" data-theme="light">
+                            <div class="theme-btn-icon">☀️</div>
+                            <div class="theme-btn-name">Claro</div>
+                            <div class="theme-btn-desc">Perfeito para o dia</div>
+                        </button>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <!-- ========== SELEÇÃO DE COR ========== -->
+                    <div class="section-title">
+                        <i class="fa-solid fa-droplet"></i>
+                        Cor de Destaque
+                    </div>
+                    <div class="section-description">
+                        Personalize a cor principal da interface
+                    </div>
+                    
+                    <div class="color-swatches">
+                        <span class="swatch" data-color="#D13438" style="background-color: #D13438;" title="Vermelho"></span>
+                        <span class="swatch" data-color="#FFB900" style="background-color: #FFB900;" title="Laranja"></span>
+                        <span class="swatch" data-color="#0078D4" style="background-color: #0078D4;" title="Azul"></span>
+                        <span class="swatch" data-color="#107C10" style="background-color: #107C10;" title="Verde"></span>
+                        <span class="swatch" data-color="#8E41B5" style="background-color: #8E41B5;" title="Roxo"></span>
+                        <span class="swatch" data-color="#E3008C" style="background-color: #E3008C;" title="Magenta"></span>
+                        <span class="swatch" data-color="#00B7C3" style="background-color: #00B7C3;" title="Ciano"></span>
+                        <span class="swatch" data-color="#FF8C00" style="background-color: #FF8C00;" title="Amber"></span>
+                    </div>
+
+                    <!-- ========== PREVIEW ========== -->
+                    <div class="browser-preview">
+                        <div class="preview-header" id="previewHeader">
+                            <div class="preview-dot"></div>
+                            <div class="preview-dot"></div>
+                            <div class="preview-dot"></div>
+                        </div>
+                        <div class="preview-content">
+                            <i class="fa-solid fa-eye" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                            <div>Pré-visualização do tema</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== SCRIPT DE GERENCIAMENTO DE TEMA ========== -->
+
+    <script src="tema.js"></script>
+
+</body>
+</html>

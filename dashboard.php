@@ -19,33 +19,38 @@ $nome_a_exibir = isset($_SESSION['nome_usuario']) ? $_SESSION['nome_usuario'] : 
     
     <aside class="sidebar">
         <div class="logo-area">
-            <img src="../imagens/logo.png" alt="Logo">
+            <img src="img/logo.png" alt="Logo">
             <span class="logo-text">Autocademy</span>
         </div>
 
-        <a href="../html/dashboard.php" class="nav-link active">
-            <img src="../imagens/iconhome.png" alt="Início" >
+        <a href="dashboard.php" class="nav-link active">
+            <img src="img/iconhome.png" alt="Início" >
             <span class="nav-text">Início</span>
         </a>
 
-        <a href="../html/materias.php" class="nav-link">
-            <img src="../imagens/icons8-livros-96.png" alt="Matérias">
+        <a href="materias.php" class="nav-link">
+            <img src="img/icons8-livros-96.png" alt="Matérias">
             <span class="nav-text">Matérias</span>
         </a>
-         <a href="../html/chat.html" class="nav-link">
-            <img src="../imagens/chat.png" alt="Chat">
+         <a href="chat.html" class="nav-link">
+            <img src="img/chat.png" alt="Chat">
             <span class="nav-text">Chat</span>
         </a>
 
-        <a href="../html/historic.php" class="nav-link">
-            <img src="../imagens/iconhistorico.png" alt="Histórico">
+        <a href="historic.php" class="nav-link">
+            <img src="img/iconhistorico.png" alt="Histórico">
             <span class="nav-text">Histórico</span>
+        </a>
+
+        <a href="index.php" class="nav-link">
+            <img src="img/" alt="Site">
+            <span class="nav-text">Ver Site</span>
         </a>
         
         <div class="spacer"></div>
 
         <a href="config.html" class="nav-link">
-            <img src="../imagens/icons8-configurações-150.png" alt="Config">
+            <img src="img/icons8-configurações-150.png" alt="Config">
             <span class="nav-text">Configurações</span>
         </a>
     </aside>

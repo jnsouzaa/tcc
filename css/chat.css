@@ -1,0 +1,843 @@
+/* ==========================================================================
+   1. RESET & VARIÁVEIS GLOBAIS
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@font-face { font-family: 'Corpta'; src: url('../fontes/Corpta\ DEMO.otf') format('opentype'); }
+@font-face { font-family: 'Chopsic'; src: url('../fontes/Chopsic.otf') format('opentype'); }
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+:root {
+    /* --- CORES DARK MODE (PADRÃO) --- */
+    --bg-body: #1f1f1f;
+    --bg-sidebar: #2c2c2c;
+    --bg-card: #2c2c2c;
+    --bg-header: rgba(31, 31, 31, 0.95);
+    --bg-hover: #3a3a3a;
+    --bg-input: #1a1a1a; /* Fundo de inputs */
+    
+    --text-primary: #ffffff;
+    --text-secondary: #b8b8b8;
+    
+    /* CORES DE DESTAQUE */
+    --accent-color: #D13438; /* Vermelho Padrão */
+    --border-color: #3b3b3b;
+    --toggle-off: #555555;
+    
+    /* MEDIDAS */
+    --sidebar-width: 80px;
+    --sidebar-width-open: 250px;
+    --header-height: 80px;
+    --container-width: 1200px;
+    
+    --shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* --- TEMA CLARO (SENAI) --- */
+.tema-claro {
+    --bg-body: #f0f0f0;
+    --bg-sidebar: #003cff;
+    --bg-card: #ffffff;
+    --bg-header: rgba(255, 255, 255, 0.95);
+    --bg-hover: #f3f4f6;
+    --bg-input: #f9fafb;
+    
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    
+    --accent-color: #FFB900;
+    --border-color: #0078D4;
+    --toggle-off: #ccc;
+    
+    --shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+body {
+    background-color: var(--bg-body); color: var(--text-primary);
+    height: 100vh; width: 100vw; display: flex; overflow: hidden;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* ==========================================================================
+   2. SIDEBAR (PADRONIZADA)
+   ========================================================================== */
+.sidebar {
+    width: var(--sidebar-width); height: 100vh; background-color: var(--bg-sidebar);
+    display: flex; flex-direction: column; align-items: center; padding: 20px 0;
+    transition: width 0.3s ease; z-index: 100; border-right: 1px solid var(--border-color); flex-shrink: 0;
+}
+.sidebar:hover { width: var(--sidebar-width-open); align-items: flex-start; }
+
+.logo-area { height: 50px; display: flex; align-items: center; padding: 0 20px; width: 100%; overflow: hidden; margin-bottom: 20px; }
+.logo-area img { width: 35px; min-width: 35px; }
+.logo-text { margin-left: 15px; font-family: 'Corpta', sans-serif; font-size: 1.2rem; opacity: 0; transition: 0.2s; color: var(--text-primary); white-space: nowrap; }
+.tema-claro .logo-text { color: white; }
+.sidebar:hover .logo-text { opacity: 1; }
+
+.nav-link {
+    display: flex; align-items: center; width: 90%; height: 50px; 
+    margin: 5px auto; padding: 0 15px; border-radius: 30px;
+    color: var(--text-secondary); text-decoration: none; 
+    transition: 0.3s; white-space: nowrap; overflow: hidden;
+    border: 1px solid transparent;
+}
+.tema-claro .nav-link { color: rgba(255,255,255,0.7); }
+
+.nav-link img { width: 24px !important; height: 24px !important; min-width: 24px !important; object-fit: contain; margin-right: 15px; transition: 0.3s; }
+
+.nav-link.active {
+    background-color: var(--accent-color); color: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4); font-weight: 600;
+}
+.nav-link.active img { filter: brightness(0) invert(1); }
+.nav-link:not(.active):hover { background-color: rgba(255,255,255,0.1); color: var(--text-primary); }
+
+.nav-text { opacity: 0; font-weight: 500; }
+.sidebar:hover .nav-text { opacity: 1; }
+.spacer { flex: 1; }
+
+/* ==========================================================================
+   3. LAYOUT PRINCIPAL
+   ========================================================================== */
+.main-wrapper { flex: 1; display: flex; flex-direction: column; height: 100vh; position: relative; overflow: hidden; }
+
+.top-header {
+    height: var(--header-height); display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; background-color: var(--bg-header); backdrop-filter: blur(5px); border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+.search-box { background: var(--bg-card); border: 1px solid var(--border-color); padding: 8px 20px; border-radius: 50px; display: flex; align-items: center; width: 300px; }
+.search-input { background: transparent; border: none; outline: none; color: var(--text-primary); width: 100%; }
+.user-profile { display: flex; align-items: center; gap: 10px; font-family: 'Corpta', sans-serif; cursor: pointer; }
+.avatar-circle { width: 40px; height: 40px; border-radius: 50%; background-color: #555; display: flex; align-items: center; justify-content: center; color: white; }
+
+/* Container de Scroll Geral */
+.scroll-content { flex: 1; overflow-y: auto; padding: 40px; }
+.container { width: 100%; max-width: var(--container-width); margin: 0 auto; padding-bottom: 50px; }
+
+/* ==========================================================================
+   4. ESTILOS GERAIS (DASHBOARD, MATÉRIAS, CONFIG, TEMAS)
+   ========================================================================== */
+/* (Mantive tudo o que já tínhamos feito antes aqui para não quebrar nada) */
+.page-title, .section-title { font-family: 'Chopsic', sans-serif; font-size: 2rem; margin-bottom: 25px; color: var(--text-primary); }
+.page-title { border-left: 4px solid var(--accent-color); padding-left: 20px; }
+
+.hero-banner { width: 100%; height: 220px; border-radius: 16px; overflow: hidden; position: relative; margin-bottom: 30px; border: 1px solid var(--border-color); }
+.hero-banner img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+.hero-text { position: absolute; bottom: 30px; left: 30px; font-size: 2rem; font-weight: 700; color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+
+.content-grid, .materias-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+.dashboard-card, .materia-card { height: 180px; border-radius: 12px; background-color: var(--bg-card); border: 1px solid var(--border-color); position: relative; overflow: hidden; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; }
+.dashboard-card:hover, .materia-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); border-color: var(--accent-color); }
+.card-bg { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; opacity: 0.8; }
+.materia-card:hover .card-bg { transform: scale(1.1); opacity: 1; }
+.card-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 15px; background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); z-index: 2; display: flex; align-items: flex-end; }
+.card-title { font-family: 'Chopsic', sans-serif; font-size: 1.2rem; color: white; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+
+/* Configurações & Temas */
+.settings-card, .theme-container { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 24px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.theme-container { padding: 40px; max-width: 600px; }
+.settings-header { padding: 20px 24px; border-bottom: 1px solid var(--border-color); font-size: 1.1rem; font-weight: 600; color: var(--text-primary); background-color: rgba(255,255,255,0.02); }
+.settings-item { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; text-decoration: none; color: var(--text-primary); border-bottom: 1px solid var(--border-color); transition: 0.2s; }
+.settings-item:last-child { border-bottom: none; }
+.settings-item:hover { background-color: var(--bg-hover); }
+.toggle-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 1px solid var(--border-color); }
+.toggle-btn { width: 44px; height: 24px; background-color: var(--toggle-off); border-radius: 50px; position: relative; border: none; cursor: pointer; transition: 0.3s ease; }
+.toggle-btn::before { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background-color: white; border-radius: 50%; transition: 0.3s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+.toggle-btn.active { background-color: var(--accent-color); }
+.toggle-btn.active::before { transform: translateX(20px); }
+
+/* Botões de Tema (Modo Claro/Escuro) */
+.mode-buttons-row { display: flex; gap: 15px; margin-bottom: 40px; }
+.btn-mode { flex: 1; padding: 15px; border: 2px solid var(--border-color); background-color: var(--bg-body); color: var(--text-primary); border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.2s; }
+.btn-mode:hover { border-color: var(--text-secondary); background-color: var(--bg-hover); }
+.btn-mode.active { background-color: var(--accent-color); color: white; border-color: var(--accent-color); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+.color-grid { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
+.swatch { width: 36px; height: 36px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: 0.2s; }
+.swatch:hover { transform: scale(1.15); }
+.swatch.active { border-color: white; box-shadow: 0 0 0 3px var(--accent-color); transform: scale(1.1); }
+
+
+/* ==========================================================================
+   7. ESTILOS DE CHAT / MENSAGENS (NOVO)
+   ========================================================================== */
+
+/* Layout específico para a tela de chat (ocupa 100% da altura) */
+.chat-layout {
+    display: flex;
+    height: calc(100vh - var(--header-height)); /* Altura total menos header */
+    background-color: var(--bg-body);
+    overflow: hidden;
+}
+
+/* Sidebar de Participantes */
+.participants-sidebar {
+    width: 280px;
+    background: var(--bg-card);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.participants-header { padding: 20px; border-bottom: 1px solid var(--border-color); }
+.participants-header h3 { color: var(--text-primary); font-size: 16px; margin-bottom: 10px; }
+
+.participants-search {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--border-color);
+    background-color: var(--bg-input); color: var(--text-primary);
+    border-radius: 6px; font-size: 13px; outline: none;
+}
+
+.participants-list { flex: 1; overflow-y: auto; padding: 10px; }
+
+.participant-item {
+    display: flex; align-items: center; gap: 12px; padding: 12px;
+    border-radius: 8px; cursor: pointer; transition: background 0.2s;
+    color: var(--text-primary);
+}
+.participant-item:hover { background: var(--bg-hover); }
+
+.participant-avatar {
+    position: relative; width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-color), #7c3aed);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 14px; font-weight: bold; flex-shrink: 0;
+}
+
+.status-indicator {
+    position: absolute; bottom: 0; right: 0; width: 12px; height: 12px;
+    border-radius: 50%; border: 2px solid var(--bg-card);
+}
+.status-online { background: #10b981; }
+.status-offline { background: #6b7280; }
+
+.participant-info { flex: 1; }
+.participant-name { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+.participant-role { font-size: 12px; color: var(--text-secondary); }
+
+/* Área de Mensagens */
+.chat-area { flex: 1; display: flex; flex-direction: column; background: var(--bg-body); position: relative; }
+
+.chat-area-header {
+    background: var(--bg-card); padding: 15px 25px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex; justify-content: space-between; align-items: center;
+}
+.chat-area-header h2 { color: var(--text-primary); font-size: 18px; margin: 0; }
+.chat-area-header p { color: var(--text-secondary); font-size: 13px; margin: 0; }
+
+.messages-container { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 20px; }
+
+.message { display: flex; gap: 12px; max-width: 70%; }
+.message.own { align-self: flex-end; flex-direction: row-reverse; }
+
+.message-bubble {
+    padding: 12px 16px; border-radius: 12px; font-size: 14px; line-height: 1.5;
+    position: relative;
+}
+
+/* Mensagem recebida (Professores/Outros) */
+.message:not(.own) .message-bubble {
+    background: var(--bg-card); border: 1px solid var(--border-color);
+    color: var(--text-primary); border-top-left-radius: 0;
+}
+
+/* Mensagem enviada (Eu) */
+.message.own .message-bubble {
+    background: var(--accent-color); color: white; border: 1px solid var(--accent-color);
+    border-top-right-radius: 0;
+}
+
+.message-time { font-size: 11px; color: var(--text-secondary); margin-top: 5px; display: block; }
+.message.own .message-time { text-align: right; }
+
+/* Área de Input */
+.input-area {
+    background: var(--bg-card); padding: 20px; border-top: 1px solid var(--border-color);
+}
+.input-wrapper { display: flex; gap: 10px; align-items: center; }
+
+.message-input {
+    flex: 1; padding: 12px 15px; border: 1px solid var(--border-color);
+    background-color: var(--bg-input); color: var(--text-primary);
+    border-radius: 25px; font-size: 14px; outline: none;
+}
+.message-input:focus { border-color: var(--accent-color); }
+
+.send-btn {
+    width: 45px; height: 45px; border: none; background: var(--accent-color);
+    color: white; border-radius: 50%; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: 0.2s; font-size: 1.1rem;
+}
+.send-btn:hover { transform: scale(1.05); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+
+/* Scrollbar do Chat */
+.messages-container::-webkit-scrollbar { width: 6px; }
+.messages-container::-webkit-scrollbar-track { background: transparent; }
+.messages-container::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
+
+
+/* ==========================================================================
+   6.1. CHAT - LAYOUT INSTRUTOR (Extensão)
+   ========================================================================== */
+
+/* Layout de 3 colunas */
+.chat-layout.instructor-layout {
+    display: grid;
+    /* Colunas: Conversas (320px), Chat (flex), Contexto (340px) */
+    grid-template-columns: 320px 1fr 340px;
+    gap: 0; /* Usamos bordas para separação */
+}
+
+/* 1. PAINEL DE CONVERSAS (FILTROS E ITENS) */
+
+.filter-controls {
+    margin-top: 15px;
+}
+
+.status-filter {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    transition: var(--transition-border), var(--transition-shadow);
+}
+.status-filter:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.05);
+}
+
+.participant-item .urgency-tag {
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin-top: 2px;
+}
+
+.participant-item .unread-count {
+    margin-left: auto;
+    background-color: var(--accent-color);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+    min-width: 24px;
+    text-align: center;
+}
+
+.participant-item.active-chat {
+    background: var(--bg-hover);
+}
+
+/* Esmaece chats resolvidos na lista */
+.participant-item.resolved-chat {
+    opacity: 0.6;
+    transition: var(--transition-opacity);
+}
+.participant-item.resolved-chat:hover {
+    opacity: 1;
+}
+
+/* 2. ÁREA DO CHAT (BOTÕES E ANOTAÇÕES) */
+
+.chat-area-header .resolve-btn {
+    /* Baseado no .btn-start / .task-action */
+    background-color: #2ecc71; /* Verde para "resolvido" */
+    border: 1px solid #27ad60;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: var(--transition-bg), var(--transition-transform), var(--transition-shadow), var(--transition-border);
+    font-weight: 500;
+    cursor: pointer;
+}
+.chat-area-header .resolve-btn:hover {
+    filter: brightness(1.1);
+    box-shadow: var(--shadow);
+}
+.chat-area-header .resolve-btn:active {
+    transform: scale(0.97);
+}
+.chat-area-header .resolve-btn.disabled,
+.chat-area-header .resolve-btn:disabled {
+    background-color: var(--bg-hover);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+
+/* Re-estiliza .input-area para suportar notas internas */
+.input-area {
+    flex-direction: column;
+    padding: 0;
+    gap: 0;
+}
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 30px;
+    width: 100%;
+}
+
+.input-area .quick-reply-btn {
+    /* Baseado no .send-btn mas sutil */
+    width: 50px; height: 50px; border: none;
+    background: var(--bg-input);
+    color: var(--text-secondary);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: var(--transition-bg), var(--transition-color), var(--transition-border);
+    font-size: 1.2rem;
+    border: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+.input-area .quick-reply-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.internal-notes {
+    width: 100%;
+    padding: 15px 30px;
+    background: var(--bg-body); /* Um tom mais escuro que o input-area */
+    border-top: 1px solid var(--border-color);
+}
+.internal-notes input,
+.student-info-block .internal-notes-input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px dashed var(--border-color); /* Para indicar "interno" */
+    background-color: var(--bg-input);
+    color: var(--text-secondary);
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: var(--transition-border), var(--transition-color);
+}
+.internal-notes input:focus,
+.student-info-block .internal-notes-input:focus {
+    border-color: var(--accent-color);
+    border-style: solid;
+    color: var(--text-primary);
+}
+
+
+/* 3. PAINEL DE CONTEXTO DO ALUNO (NOVO) */
+
+.student-context-sidebar {
+    background-color: var(--bg-card);
+    border-left: 1px solid var(--border-color);
+    height: calc(100vh - var(--header-height));
+    overflow-y: auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.student-context-sidebar h3 {
+    /* Baseado no .page-title mas menor */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5rem;
+    margin-bottom: 0; /* Gap da flexbox cuida disso */
+    color: var(--text-primary);
+    border-left: 4px solid var(--accent-color);
+    padding-left: 15px;
+}
+
+.student-info-block {
+    /* Baseado no .settings-item */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid var(--border-color);
+}
+.student-info-block:last-of-type {
+    border-bottom: none;
+}
+
+.student-info-block h4 {
+    /* Baseado no .settings-header */
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px; /* Espaço para o conteúdo abaixo */
+}
+.student-info-block h4 i {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.student-info-block p,
+.student-info-block li {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    padding-left: 30px; /* Alinhar com o ícone do h4 */
+}
+
+.student-info-block ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-left: 0;
+}
+.student-info-block li {
+    position: relative;
+    padding-left: 30px;
+}
+.student-info-block li i {
+    position: absolute;
+    left: 10px;
+    top: 6px;
+    color: var(--text-secondary);
+    font-size: 0.6rem !important; /* Força o tamanho pequeno */
+}
+.student-info-block p strong {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+
+/* 4. MENU DE RESPOSTAS PRONTAS (JS) */
+
+.quick-reply-menu {
+    position: absolute; 
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-hover);
+    border-radius: 12px; /* Padrão dos cards */
+    width: 300px;
+    max-height: 250px;
+    overflow-y: auto;
+    z-index: 1001; /* Acima de tudo */
+    padding: 10px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInMenu 0.2s ease forwards;
+    bottom: 100px; /* Posição inicial (JS pode ajustar) */
+    left: 30px;
+}
+
+@keyframes fadeInMenu {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.quick-reply-item {
+    /* Baseado no .settings-item */
+    display: block;
+    padding: 12px 15px;
+    border-radius: 8px;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transition-bg);
+}
+.quick-reply-item:hover {
+    background-color: var(--bg-hover);
+}/* ==========================================================================
+   6.1. CHAT - LAYOUT INSTRUTOR (Extensão)
+   ========================================================================== */
+
+/* Layout de 3 colunas */
+.chat-layout.instructor-layout {
+    display: grid;
+    /* Colunas: Conversas (320px), Chat (flex), Contexto (340px) */
+    grid-template-columns: 320px 1fr 340px;
+    gap: 0; /* Usamos bordas para separação */
+}
+
+/* 1. PAINEL DE CONVERSAS (FILTROS E ITENS) */
+
+.filter-controls {
+    margin-top: 15px;
+}
+
+.status-filter {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    transition: var(--transition-border), var(--transition-shadow);
+}
+.status-filter:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.05);
+}
+
+.participant-item .urgency-tag {
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin-top: 2px;
+}
+
+.participant-item .unread-count {
+    margin-left: auto;
+    background-color: var(--accent-color);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+    min-width: 24px;
+    text-align: center;
+}
+
+.participant-item.active-chat {
+    background: var(--bg-hover);
+}
+
+/* Esmaece chats resolvidos na lista */
+.participant-item.resolved-chat {
+    opacity: 0.6;
+    transition: var(--transition-opacity);
+}
+.participant-item.resolved-chat:hover {
+    opacity: 1;
+}
+
+/* 2. ÁREA DO CHAT (BOTÕES E ANOTAÇÕES) */
+
+.chat-area-header .resolve-btn {
+    /* Baseado no .btn-start / .task-action */
+    background-color: #2ecc71; /* Verde para "resolvido" */
+    border: 1px solid #27ad60;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: var(--transition-bg), var(--transition-transform), var(--transition-shadow), var(--transition-border);
+    font-weight: 500;
+    cursor: pointer;
+}
+.chat-area-header .resolve-btn:hover {
+    filter: brightness(1.1);
+    box-shadow: var(--shadow);
+}
+.chat-area-header .resolve-btn:active {
+    transform: scale(0.97);
+}
+.chat-area-header .resolve-btn.disabled,
+.chat-area-header .resolve-btn:disabled {
+    background-color: var(--bg-hover);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+
+/* Re-estiliza .input-area para suportar notas internas */
+.input-area {
+    flex-direction: column;
+    padding: 0;
+    gap: 0;
+}
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 30px;
+    width: 100%;
+}
+
+.input-area .quick-reply-btn {
+    /* Baseado no .send-btn mas sutil */
+    width: 50px; height: 50px; border: none;
+    background: var(--bg-input);
+    color: var(--text-secondary);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: var(--transition-bg), var(--transition-color), var(--transition-border);
+    font-size: 1.2rem;
+    border: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+.input-area .quick-reply-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.internal-notes {
+    width: 100%;
+    padding: 15px 30px;
+    background: var(--bg-body); /* Um tom mais escuro que o input-area */
+    border-top: 1px solid var(--border-color);
+}
+.internal-notes input,
+.student-info-block .internal-notes-input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px dashed var(--border-color); /* Para indicar "interno" */
+    background-color: var(--bg-input);
+    color: var(--text-secondary);
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: var(--transition-border), var(--transition-color);
+}
+.internal-notes input:focus,
+.student-info-block .internal-notes-input:focus {
+    border-color: var(--accent-color);
+    border-style: solid;
+    color: var(--text-primary);
+}
+
+
+/* 3. PAINEL DE CONTEXTO DO ALUNO (NOVO) */
+
+.student-context-sidebar {
+    background-color: var(--bg-card);
+    border-left: 1px solid var(--border-color);
+    height: calc(100vh - var(--header-height));
+    overflow-y: auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.student-context-sidebar h3 {
+    /* Baseado no .page-title mas menor */
+    font-family: 'Chopsic', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 0; /* Gap da flexbox cuida disso */
+    color: var(--text-primary);
+    border-left: 4px solid var(--accent-color);
+    padding-left: 15px;
+}
+
+.student-info-block {
+    /* Baseado no .settings-item */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid var(--border-color);
+}
+.student-info-block:last-of-type {
+    border-bottom: none;
+}
+
+.student-info-block h4 {
+    /* Baseado no .settings-header */
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px; /* Espaço para o conteúdo abaixo */
+}
+.student-info-block h4 i {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.student-info-block p,
+.student-info-block li {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    padding-left: 30px; /* Alinhar com o ícone do h4 */
+}
+
+.student-info-block ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-left: 0;
+}
+.student-info-block li {
+    position: relative;
+    padding-left: 30px;
+}
+.student-info-block li i {
+    position: absolute;
+    left: 10px;
+    top: 6px;
+    color: var(--text-secondary);
+    font-size: 0.6rem !important; /* Força o tamanho pequeno */
+}
+.student-info-block p strong {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+
+/* 4. MENU DE RESPOSTAS PRONTAS (JS) */
+
+.quick-reply-menu {
+    position: absolute; 
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-hover);
+    border-radius: 12px; /* Padrão dos cards */
+    width: 300px;
+    max-height: 250px;
+    overflow-y: auto;
+    z-index: 1001; /* Acima de tudo */
+    padding: 10px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInMenu 0.2s ease forwards;
+    bottom: 100px; /* Posição inicial (JS pode ajustar) */
+    left: 30px;
+}
+
+@keyframes fadeInMenu {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.quick-reply-item {
+    /* Baseado no .settings-item */
+    display: block;
+    padding: 12px 15px;
+    border-radius: 8px;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transition-bg);
+}
+.quick-reply-item:hover {
+    background-color: var(--bg-hover);
+}

@@ -28,7 +28,7 @@ $nome_prof = isset($_SESSION['nome_usuario']) ? $_SESSION['nome_usuario'] : 'Pro
     <!-- SIDEBAR DO PROFESSOR -->
     <aside class="sidebar">
         <div class="logo-area">
-            <img src="../imagens/logo.png" alt="Logo">
+            <img src="img/logo.png" alt="Logo">
             <span class="logo-text">Autocademy <small style="font-size: 0.6rem; color: var(--accent-color);">DOCENTE</small></span>
         </div>
 
@@ -37,17 +37,17 @@ $nome_prof = isset($_SESSION['nome_usuario']) ? $_SESSION['nome_usuario'] : 'Pro
             <span class="nav-text">Painel</span>
         </a>
 
-        <a href="../html/turmas.php" class="nav-link">
+        <a href="/turmas.php" class="nav-link">
             <i class="fa-solid fa-users"></i> <!-- Ícone de Turmas -->
             <span class="nav-text">Minhas Turmas</span>
         </a>
 
-        <a href="../html/notas.php" class="nav-link">
+        <a href="notas.php" class="nav-link">
             <i class="fa-solid fa-file-pen"></i> <!-- Ícone de Notas -->
             <span class="nav-text">Lançar Notas</span>
         </a>
 
-        <a href="./chatprof.html" class="nav-link">
+        <a href="chatprof.html" class="nav-link">
             <i class="fa-regular fa-comments"></i>
             <span class="nav-text">Mensagens</span>
         </a>
@@ -55,7 +55,7 @@ $nome_prof = isset($_SESSION['nome_usuario']) ? $_SESSION['nome_usuario'] : 'Pro
         <div class="spacer"></div>
 
         <a href="config.html" class="nav-link">
-            <img src="../imagens/icons8-configurações-150.png" alt="Config">
+            <img src="img/icons8-configurações-150.png" alt="Config">
             <span class="nav-text">Configurações</span>
         </a>
     </aside>
